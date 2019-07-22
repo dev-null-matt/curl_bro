@@ -1,0 +1,13 @@
+name: Curl Bro
+version: "1.0"
+author: Matt Rick <dev.null.matt@gmail.com>
+about: A command line utility for tracking and replaying commonly used curl commands and managing the credentials used to authorize them.
+args:
+    - history_count:
+        short: r
+        long: remember
+        value_name: history_count
+        help: The number of the curl command backwards in history (starting at 0 for the last command) to remember.
+        default_value: "0"
+        takes_value: true
+        required: false
