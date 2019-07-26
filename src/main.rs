@@ -30,7 +30,15 @@ fn main() {
         },
         (Err(msg), Err(msg2)) => {
             println!("Couldn't compile regexs: {}", msg);
-            println!("Couldn't open history: {}", msg2)
+            println!("Couldn't open history: {}", msg2);
+            exit(1)
+        },
+        (Err(msg), _) => {
+            println!("Couldn't compile regexs: {}", msg);
+            exit(1)
+        }
+        (_, Err(msg)) => {
+            println!("Couldn't open history: {}", msg);
             exit(1)
         },
     };
