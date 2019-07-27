@@ -6,7 +6,7 @@ mod credential_extractor;
 
 use config::Config;
 use clap::App;
-use credential_extractor::CredentialExtractor;
+use credential_extractor::{AuthorizationExtractor, BasicAuthExtractor, CredentialExtractor};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -24,7 +24,16 @@ fn main() {
         (Ok(extractor), Ok(history)) => for result in BufReader::new(history).lines() {
             match result {
                 Err(e) => println!("Error reading line: {}", e),
-                Ok(ref line) if is_curl_command(line) && extractor.has_credentials(line) => println!("{}", line),
+                Ok(ref line) if is_curl_command(line) => {
+                    match (
+                        extractor.get_authorization(line),
+                        extractor.get_basic_auth(line),
+                    ) {
+                        (Some((username, password)), _) => println!("{}:{}", username, password),
+                        (_, Some((auth_type, authentication))) => println!("Authorization: {} {}", auth_type, authentication),
+                        (_, _) => ()
+                    }
+                },
                 Ok(_) => (),
             }
         },
