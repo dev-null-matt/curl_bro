@@ -1,0 +1,46 @@
+name: Curl
+about: I'm using clap here to parse the args of already executed curl commands.
+args:
+  - header:
+      short: H
+      long: header
+      value_name: header
+      multiple: true
+      takes_value: true
+      required: false
+  - user:
+      short: u
+      long: user
+      value_name: user
+      takes_value: true
+      required: false
+  - form_data:
+      short: F
+      long: form
+      value_name: form_data
+      multiple: true
+      takes_value: true
+      required: false
+  - include:
+      short: i
+      long: include
+      multiple: true
+      takes_value: false
+      required: false
+  - insecure:
+      short: k
+      long: insecure
+      takes_value: false
+      required: false
+  - URL:
+      required: true
+  - request:
+      short: X
+      long: request
+      takes_value: true
+      required: false
+  - data:
+      short: d
+      long: data
+      takes_value: true
+      required: false
