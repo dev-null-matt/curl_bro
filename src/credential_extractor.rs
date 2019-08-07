@@ -90,7 +90,7 @@ fn tokenize_command_string(arguments: &str) -> Vec<String> {
     let mut tokens:Vec<String> = Vec::new();
     let mut buffer: String = "".to_string();
     let mut escaped: bool = false;
-    let mut  quote_char: Option<char> = None;
+    let mut quote_char: Option<char> = None;
 
     arguments.chars().for_each(|char| {
 
